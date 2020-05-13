@@ -1,0 +1,9 @@
+version: 1.0.1
+files:
+  - url: electron-update-1.0.1.AppImage
+    sha512: 33BtRw/wDGsIu/uYC/j8tIecCnfb9RCRgMBcN4jfX6dyC/9kBrM1rPnD2hkNLa1EQ/Fw7dayEtrAz7/EfMmKNA==
+    size: 72890746
+    blockMapSize: 76174
+path: electron-update-1.0.1.AppImage
+sha512: 33BtRw/wDGsIu/uYC/j8tIecCnfb9RCRgMBcN4jfX6dyC/9kBrM1rPnD2hkNLa1EQ/Fw7dayEtrAz7/EfMmKNA==
+releaseDate: '2020-05-13T20:15:10.801Z'

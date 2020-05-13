@@ -1,14 +1,27 @@
 {
-  "name": "electron-update",
-  "version": "1.0.0",
-  "description": "Estudos",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "electron": "^8.2.5"
-  }
+    "name": "electron-update",
+    "version": "1.0.0",
+    "description": "Estudos",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-builder -l --publish=never"
+    },
+    "build": {
+        "appId": "com.example.app",
+        "publish": [{
+            "provider": "generic",
+            "url": "http://localhost:8000/"
+        }]
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^8.2.5",
+        "electron-builder": "^22.6.0"
+    },
+    "dependencies": {
+        "electron-log": "^4.1.2",
+        "electron-updater": "^4.3.1"
+    }
 }
