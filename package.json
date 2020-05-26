@@ -1,18 +1,21 @@
 {
     "name": "electron-update",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Estudos",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "build": "electron-builder -l --publish=never"
+        "linux": "electron-builder -l --publish=never",
+        "windows": "electron-builder -w --publish=never"
     },
     "build": {
         "appId": "com.example.app",
-        "publish": [{
-            "provider": "generic",
-            "url": "http://localhost:8000/"
-        }]
+        "publish": [
+            {
+                "provider": "generic",
+                "url": "http://localhost:8000/"
+            }
+        ]
     },
     "author": "",
     "license": "ISC",

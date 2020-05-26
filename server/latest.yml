@@ -1,0 +1,8 @@
+version: 1.0.1
+files:
+  - url: electron-update Setup 1.0.1.exe
+    sha512: oORzS1qu2Gq2pjkRW86+tPJ9sn5hH3VWWmsObGM8/vSU/RtJiV8uYXPbFcqw/pcGQj4OLwo8NuCmWk7k8CBX1g==
+    size: 50197399
+path: electron-update Setup 1.0.1.exe
+sha512: oORzS1qu2Gq2pjkRW86+tPJ9sn5hH3VWWmsObGM8/vSU/RtJiV8uYXPbFcqw/pcGQj4OLwo8NuCmWk7k8CBX1g==
+releaseDate: '2020-05-26T12:18:40.824Z'
