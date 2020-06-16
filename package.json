@@ -1,27 +1,44 @@
 {
     "name": "electron-update",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "description": "Estudos",
     "main": "main.js",
     "scripts": {
         "start": "electron .",
         "linux": "electron-builder -l --publish=never",
-        "windows": "electron-builder -w --publish=never"
+        "windows": "electron-builder -w --publish=never",
+        "mac": "electron-builder"
     },
     "build": {
-        "appId": "com.example.app",
+        "appId": "Update Software",
+        "productName": "Update Software",
+        "artifactName": "Update Software.${ext}",
+        "copyright": "Copyright © 2020 Software Update",
+        "afterSign": "scripts/notarize.js",
         "publish": [
             {
                 "provider": "generic",
                 "url": "http://localhost:8000/"
             }
-        ]
+        ],
+        "mac": {
+            "entitlements": "build/entitlements.mac.plist",
+            "entitlementsInherit": "build/entitlements.mac.plist",
+            "hardenedRuntime": true,
+            "gatekeeperAssess": false,
+            "category": "public.app-category.productivity",
+            "target": [
+                "dmg",
+                "zip"
+            ]
+        }
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
         "electron": "^8.2.5",
-        "electron-builder": "^22.6.0"
+        "electron-builder": "^22.6.0",
+        "electron-notarize": "^1.0.0"
     },
     "dependencies": {
         "electron-log": "^4.1.2",
