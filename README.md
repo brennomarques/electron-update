@@ -1,4 +1,4 @@
-# Electron-update
+# Electron update
 Update Electron application
 
 ## Project setup
@@ -13,13 +13,19 @@ npm run start
 
 ### Compiles and minifies for production
 ```
-npm run build
+- Windows: npm run win
+- Linux: npm run linux
+- MAC: npm run mac
 ```
 
-### Lints and fixes files
+### Create localhost server
 ```
-npm run lint
+python3 -m http.server 8000
 ```
+See [Configuration Reference Python](https://pythonbasics.org/webserver/).
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+Copy the latest.yml and Update Software.AppImage files.
+The example used Linux.
+```
