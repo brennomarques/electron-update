@@ -1,40 +1,65 @@
-const { app, BrowserWindow, dialog } = require('electron')
-const { autoUpdater } = require("electron-updater")
+const { app, BrowserWindow, dialog } = require('electron');
+const { autoUpdater } = require('electron-updater');
 const log = require('electron-log');
+const path = require('path');
 
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
 
+let win, icon;
 
-function createWindow() {
-    // Cria uma janela de navegação.
-    let win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    })
+if (process.platform === 'darwin') {
+  app.dock.setIcon(path.join(__dirname, 'icon.png')); 
+  
+  setTimeout(() => {
+    app.dock.bounce();
+  }, 500);
 
-    // e carregar o index.html do aplicativo.
-    win.loadFile('index.html')
-    autoUpdater.checkForUpdates();
+} else {
+  icon = path.join(__dirname, "build", "icon.png");
 }
 
-app.whenReady().then(createWindow)
+function createWindow() {
 
-autoUpdater.on('update-available', info => {
-    log.info('update-available');
-    const dialogOpts = {
-        type: 'info',
-        buttons: ['Atualizar', 'Agora Não'],
-        title: 'Atualização do Aplicativo',
-        message: 'Atualização Disponível',
-        detail: 'Uma nova versão do aplicativo birdID Desktop está disponível. É preciso reiniciar o aplicativo para aplicar as atualizações.'
-    }
+  win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+    icon: icon
+  });
 
-    dialog.showMessageBox(dialogOpts, (response) => {
-        if (response === 0) autoUpdater.quitAndInstall()
-    })
+  win.loadFile('index.html');
+
+  autoUpdater.checkForUpdates();
+
+  win.webContents.on("did-finish-load", () => {
+    const { title, version } = require('./package.json');
+    win.setTitle(`${title} ...:::... ${version} -- ELECTRON UPDATE`);
+  });
+
+  // Show menu Electron.
+  win.setMenuBarVisibility(true);
+
+}
+
+app.whenReady().then(createWindow);
+
+autoUpdater.on('update-available', (info) => {
+  log.info('update-available');
+  const dialogOpts = {
+    type: 'info',
+    buttons: ['Update', 'Not now'],
+    title: 'Application Update',
+    message: 'Update Available',
+    detail:'A new version of the Desktop application is available. You need to restart the application to apply the updates.',
+  };
+
+  dialog.showMessageBox(dialogOpts, (response) => {
+    if (response === 0) {
+      autoUpdater.quitAndInstall();
+    }    
+  });
 
 });
